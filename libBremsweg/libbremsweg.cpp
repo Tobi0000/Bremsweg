@@ -1,7 +1,11 @@
 #include "libbremsweg.h"
 
+double Normfallbeschleunigung = 9.80665;
+double Haftreibungszahl = 0.0;
+
+
 Bremsweg::Bremsweg()
-:untergrundfaktor(1.0), geschwindigkeit(0.0), fahrzeug("PkW"), bremsweg(0.0), gefahrenbremsung (1)
+:untergrundfaktor(1.0), geschwindigkeit(0.0), bremsweg(0.0), gefahrenbremsung (1), fahrzeug("PkW")
 {
 }
 
@@ -45,15 +49,32 @@ void Bremsweg::BremswegBerechnen()
 {
     if (fahrzeug == "PkW")
     {
-        bremsweg = (((geschwindigkeit/10.0)*(geschwindigkeit/10.0))/gefahrenbremsung)*untergrundfaktor;
+        Haftreibungszahl = 0.8;
+        double bremsbeschleunigung = Haftreibungszahl * Normfallbeschleunigung;
+        double bremszeit = (geschwindigkeit/3.6)/bremsbeschleunigung;
+        double reaktionsweg = geschwindigkeit/10*3;
+        if (gefahrenbremsung == 2)
+        {
+            bremsweg = (round((reaktionsweg+0.5*bremsbeschleunigung*bremszeit*bremszeit)*untergrundfaktor*10))/10;
+        }
+        else
+        {
+            bremsweg = (round(((reaktionsweg+0.5*bremsbeschleunigung*bremszeit*bremszeit)*untergrundfaktor*1.5)*10))/10;
+        }
     }
-    else if (fahrzeug == "Kettenfahrzeug")
+    else if (fahrzeug == "Panzer")
     {
-        bremsweg = -2;
+        Haftreibungszahl = 1.51;
+        double bremsbeschleunigung = Haftreibungszahl * Normfallbeschleunigung;
+        double bremszeit = (geschwindigkeit/3.6)/bremsbeschleunigung;
+        bremsweg = (round((0.5*bremsbeschleunigung*bremszeit*bremszeit)*untergrundfaktor*10))/10;
     }
     else if (fahrzeug == "Zug")
     {
-        bremsweg = -1;
+        Haftreibungszahl = 0.18;
+        double bremsbeschleunigung = Haftreibungszahl * Normfallbeschleunigung;
+        double bremszeit = (geschwindigkeit/3.6)/bremsbeschleunigung;
+        bremsweg = (round((0.5*bremsbeschleunigung*bremszeit*bremszeit)*untergrundfaktor*10))/10;
     }
 }
 
