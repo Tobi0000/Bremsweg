@@ -9,6 +9,7 @@ class Bremsweg : public QObject
 
 public:
     Bremsweg();
+    Bremsweg(double untergrundfaktor, double geschwindigkeit, int gefahrenbremsung, std::string fahrzeug);
     double BremswegAbfragen() const;
     void BremswegBerechnen();
 
