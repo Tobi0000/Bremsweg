@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>781</width>
-    <height>557</height>
+    <width>347</width>
+    <height>180</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -46,16 +46,6 @@
       </item>
      </layout>
     </item>
-    <item row="1" column="0">
-     <layout class="QHBoxLayout" name="horizontalLayout_3">
-      <item>
-       <widget class="QComboBox" name="comboBoxFahrzeug"/>
-      </item>
-      <item>
-       <widget class="QComboBox" name="comboBoxUntergrund"/>
-      </item>
-     </layout>
-    </item>
     <item row="2" column="0">
      <layout class="QHBoxLayout" name="horizontalLayout">
       <item>
@@ -80,14 +70,24 @@
     <item row="3" column="0">
      <layout class="QHBoxLayout" name="horizontalLayout_2">
       <item>
+       <widget class="QLCDNumber" name="lcdBremsweg"/>
+      </item>
+      <item>
        <widget class="QPushButton" name="pushButtonBremswegberechnen">
         <property name="text">
          <string>Bremsweg berechnen</string>
         </property>
        </widget>
       </item>
+     </layout>
+    </item>
+    <item row="1" column="0">
+     <layout class="QHBoxLayout" name="horizontalLayout_3">
       <item>
-       <widget class="QLCDNumber" name="lcdBremsweg"/>
+       <widget class="QComboBox" name="comboBoxFahrzeug"/>
+      </item>
+      <item>
+       <widget class="QComboBox" name="comboBoxUntergrund"/>
       </item>
      </layout>
     </item>
